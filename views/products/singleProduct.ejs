@@ -1,0 +1,21 @@
+<% layout('layout/boilerplate') -%>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card m-2" style="width: 18rem;">
+        <img src=<%= item.imageUrl %> class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= item.productName %></h5>
+          <h5 class="card-title"><%= item.price %></h5>
+          <p class="card-text"><%= item.description %></p>
+          <a href="/add-to-cart/<%= item._id %>" class="btn btn-primary btn-sm m-1">Add to cart</a>
+          <a href="/buy-now/<%= item._id %>" class="btn btn-danger btn-sm m-1">Buy Now</a>
+          <% if(currUser && currUser.userType && currUser.userType == "seller"){ %>
+            <a href="/product/<%= item._id %>/edit" class="btn btn-success btn-sm m-1">Edit</a>
+            <form action="/product/<%= item._id %>?_method=Delete" method="POST">
+              <button type="submit" class="btn btn-warning btn-sm m-1">Delete</button>
+            </form>
+        <% } %>
+        </div>
+    </div>
+  </div>
+</div>
